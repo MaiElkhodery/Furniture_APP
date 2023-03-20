@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".HomeFragment">
+
+
+    <com.google.android.material.search.SearchView
+        android:id="@+id/searchWidget"
+        android:layout_width="0dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="52dp"
+        android:layout_marginEnd="80dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="19dp"
+        android:layout_marginEnd="24dp"
+        android:background="@drawable/layout_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchWidget">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginBottom="12dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@drawable/seater_sofa" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="147dp"
+            android:layout_height="62dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="12dp"
+            android:fontFamily="cursive"
+            android:text="Sale Up To 70% Off"
+            android:textColor="@color/white"
+            android:textSize="26sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="wrap_content"
+            android:layout_height="28dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/button_background"
+            android:paddingLeft="24dp"
+            android:paddingTop="5dp"
+            android:paddingRight="24dp"
+            android:paddingBottom="5dp"
+            android:text="Go Shopping"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="23dp"
+        android:text="Categories"
+        android:textColor="#934C25"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+
+    <ScrollView
+        android:id="@+id/categories_layout"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginTop="29dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientaion="horizontal">
+
+            <TextView
+                android:id="@+id/allTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:text="All"
+                android:textColor="#934C25"
+                android:textSize="20sp" />
+            <TextView
+                android:id="@+id/chairTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:text="Chairs"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+            <TextView
+                android:id="@+id/sofaTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:text="Sofa"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+            <TextView
+                android:id="@+id/bedTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:text="Beds"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+            <TextView
+                android:id="@+id/tableTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:text="Tables"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+            <TextView
+                android:id="@+id/lampTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:text="Lamps"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+    </ScrollView>
+
+    <FrameLayout
+        android:id="@+id/categoriesContainer"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="29dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/categories_layout">
+    </FrameLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/nav_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/nav_menu"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
