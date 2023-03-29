@@ -1,0 +1,122 @@
+package com.example.furniture_app.Database;
+
+import android.app.Application;
+import android.os.AsyncTask;
+
+import androidx.lifecycle.LiveData;
+
+import java.util.ArrayList;
+
+public class Repository {
+    private UserDAO userDAO;
+    private ProductDAO productDAO;
+
+    public Repository(Application application){
+        Database database = Database.getINSTANCE(application);
+        userDAO= database.userDAO();
+        productDAO= database.productDAO();
+    }
+    public void insertUser(User user){
+        new InsertUserAsyncTask(userDAO).execute(user);
+    }
+    public void deleteUser(User user){
+        new DeleteUserAsyncTask(userDAO).execute(user);
+    }
+    public void updateUser(User user){
+        new UpdateUserAsyncTask(userDAO).execute(user);
+    }
+    public User getUser(String email){
+        return userDAO.getUser(email);
+    }
+
+    private static class InsertUserAsyncTask extends AsyncTask<User, Void, Void> {
+
+        private UserDAO userDAO;
+        private InsertUserAsyncTask(UserDAO userDAO){
+            this.userDAO=userDAO;
+        }
+        @Override
+        protected Void doInBackground(User... users) {
+            userDAO.insertUser(users[0]);
+            return null;
+        }
+    }
+    private static class DeleteUserAsyncTask extends AsyncTask<User, Void, Void> {
+
+        private UserDAO userDAO;
+        private DeleteUserAsyncTask(UserDAO userDAO){
+            this.userDAO=userDAO;
+        }
+        @Override
+        protected Void doInBackground(User... users) {
+            userDAO.deleteUser(users[0]);
+            return null;
+        }
+    }
+    private static class UpdateUserAsyncTask extends AsyncTask<User, Void, Void> {
+
+        private UserDAO userDAO;
+        private UpdateUserAsyncTask(UserDAO userDAO){
+            this.userDAO=userDAO;
+        }
+        @Override
+        protected Void doInBackground(User... users) {
+            userDAO.updateUserData(users[0]);
+            return null;
+        }
+    }
+
+
+    public void insertProduct(Product product){
+        new InsertProductAsyncTask(productDAO).execute(product);
+    }
+    public void deleteProduct(Product product){
+        new DeleteProductAsyncTask(productDAO).execute(product);
+    }
+    public void updateProduct(Product product){
+        new UpdateProductAsyncTask(productDAO).execute(product);
+    }
+    public Product getProduct(String name){
+        return productDAO.getProduct(name);
+    }
+    public LiveData<ArrayList<Product>> getAllProducts(){
+        return productDAO.getAllProducts();
+    }
+
+    private static class InsertProductAsyncTask extends AsyncTask<Product, Void, Void> {
+
+        private ProductDAO productDAO;
+        private InsertProductAsyncTask(ProductDAO productDAO){
+            this.productDAO=productDAO;
+        }
+        @Override
+        protected Void doInBackground(Product... products) {
+            productDAO.insert(products[0]);
+            return null;
+        }
+    }
+    private static class DeleteProductAsyncTask extends AsyncTask<Product, Void, Void> {
+
+        private ProductDAO productDAO;
+        private DeleteProductAsyncTask(ProductDAO productDAO){
+            this.productDAO=productDAO;
+        }
+        @Override
+        protected Void doInBackground(Product... products) {
+            productDAO.delete(products[0]);
+            return null;
+        }
+    }
+    private static class UpdateProductAsyncTask extends AsyncTask<Product, Void, Void> {
+
+        private ProductDAO productDAO;
+        private UpdateProductAsyncTask(ProductDAO productDAO){
+            this.productDAO=productDAO;
+        }
+        @Override
+        protected Void doInBackground(Product... products) {
+            productDAO.update(products[0]);
+            return null;
+        }
+    }
+}
