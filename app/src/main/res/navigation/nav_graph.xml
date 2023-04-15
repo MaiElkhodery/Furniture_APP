@@ -18,7 +18,11 @@
         android:id="@+id/favoriteFragment"
         android:name="com.example.furniture_app.FavoriteFragment"
         android:label="fragment_favorite"
-        tools:layout="@layout/fragment_favorite" />
+        tools:layout="@layout/fragment_favorite" >
+        <action
+            android:id="@+id/action_favoriteFragment_to_productDetailsFragment"
+            app:destination="@id/productDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/productDetailsFragment"
         android:name="com.example.furniture_app.ProductDetailsFragment"
@@ -62,4 +66,9 @@
             android:id="@+id/action_loginFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
     </fragment>
+    <activity
+        android:id="@+id/mainActivity"
+        android:name="com.example.furniture_app.MainActivity"
+        android:label="activity_main"
+        tools:layout="@layout/activity_main" />
 </navigation>

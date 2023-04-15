@@ -54,12 +54,8 @@ public class HomeFragment extends Fragment {
 
     public void initRecyclerView(){
         RecyclerView recyclerView = homeBinding.categoriesContainer;
-        adapter = new CategoriesAdapter(getContext(), new CategoriesAdapter.SetOnClickProductListener() {
-            @Override
-            public void onClick(Product product) {
-                navController.navigate(HomeFragmentDirections.actionHomeFragmentToProductDetailsFragment(product));
-            }
-        });
+        adapter = new CategoriesAdapter(getContext(), product -> navController
+                .navigate(HomeFragmentDirections.actionHomeFragmentToProductDetailsFragment(product)));
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
         viewModel.getAllProducts().observe(getViewLifecycleOwner(), products -> {
