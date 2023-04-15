@@ -20,7 +20,7 @@ import com.example.furniture_app.databinding.FragmentHomeBinding;
 
 import java.util.ArrayList;
 
-public class HomeFragment extends Fragment implements CategoriesAdapter.SetOnClickProductListener{
+public class HomeFragment extends Fragment {
 
     FragmentHomeBinding homeBinding;
     ArrayList<Product> product_list=new ArrayList<>();
@@ -54,7 +54,12 @@ public class HomeFragment extends Fragment implements CategoriesAdapter.SetOnCli
 
     public void initRecyclerView(){
         RecyclerView recyclerView = homeBinding.categoriesContainer;
-        adapter = new CategoriesAdapter(getContext());
+        adapter = new CategoriesAdapter(getContext(), new CategoriesAdapter.SetOnClickProductListener() {
+            @Override
+            public void onClick(Product product) {
+                navController.navigate(HomeFragmentDirections.actionHomeFragmentToProductDetailsFragment(product));
+            }
+        });
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
         viewModel.getAllProducts().observe(getViewLifecycleOwner(), products -> {
@@ -72,10 +77,5 @@ public class HomeFragment extends Fragment implements CategoriesAdapter.SetOnCli
         viewModel.insertProduct(new Product(R.drawable.yellow_sofa,"Modern Sofas","450$"));
         viewModel.insertProduct(new Product(R.drawable.yellow_sofa,"Modern Sofas","450$"));
         viewModel.insertProduct(new Product(R.drawable.yellow_sofa,"Modern Sofas","450$"));
-    }
-
-    @Override
-    public void onClick() {
-        navController.navigate(R.id.action_homeFragment_to_productDetailsFragment);
     }
 }

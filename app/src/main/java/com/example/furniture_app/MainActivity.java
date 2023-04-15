@@ -12,8 +12,6 @@ public class MainActivity extends AppCompatActivity {
     String PREF_NAME = "app_pref";
     String FIRST_TIME_KEY = "firstTime";
     String FIRST_LOGIN_KEY = "firstLogin";
-    boolean isFirstLogin;
-    boolean isFirstTime;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,28 +20,24 @@ public class MainActivity extends AppCompatActivity {
         boolean isFirstTime = pref.getBoolean(FIRST_TIME_KEY, true);
         boolean isFirstLogin = pref.getBoolean(FIRST_LOGIN_KEY, true);
         if (isFirstTime){
-            setContentView(R.layout.splash_screen_layout);
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.mainActivityContainer,new SplashFragment()).commit();
+            pref.edit().putBoolean(FIRST_TIME_KEY, false).apply();
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    pref.edit().putBoolean(FIRST_TIME_KEY, false).apply();
-
-                    SignupFragment signupFragment= SignupFragment.newInstance();
                     getSupportFragmentManager().beginTransaction()
-                            .add(R.id.login_signup_container, signupFragment).commit();
+                            .replace(R.id.mainActivityContainer, SignupFragment.newInstance()).commit();
                     finish();
                 }
-            }, 3000);
+            }, 5000);
         }else if(isFirstLogin){
             pref.edit().putBoolean(FIRST_LOGIN_KEY, false).apply();
-
-            LoginFragment loginFragment = LoginFragment.newInstance();
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.login_signup_container, loginFragment).commit();
+                    .add(R.id.mainActivityContainer, LoginFragment.newInstance()).commit();
         }else{
-            HomeFragment homeFragment = HomeFragment.newInstance();
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.login_signup_container,homeFragment)
+                    .add(R.id.mainActivityContainer, HomeFragment.newInstance())
                     .commit();
         }
 

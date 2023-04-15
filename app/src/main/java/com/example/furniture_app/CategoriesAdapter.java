@@ -25,12 +25,18 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Ho
     ArrayList<Product> products;
     ViewModel viewModel;
     Context context;
-    SetOnClickProductListener listener;
-    public CategoriesAdapter(Context context){
+    private SetOnClickProductListener listener;
+
+    @Override
+    public void onAttachedToRecyclerView(@NonNull RecyclerView recyclerView) {
+        super.onAttachedToRecyclerView(recyclerView);
+    }
+
+    public CategoriesAdapter(Context context,SetOnClickProductListener listener){
         this.context = context;
+        this.listener=listener;
         products = new ArrayList<>();
         viewModel = new ViewModelProvider((ViewModelStoreOwner) context).get(ViewModel.class);
-        listener=(SetOnClickProductListener) context;
     }
     @NonNull
     @Override
@@ -68,7 +74,8 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Ho
 
         });
         holder.itemView.setOnClickListener(view -> {
-            listener.onClick();
+            //Navigation.findNavController(holder.itemView).navigate(R.id.action_homeFragment_to_productDetailsFragment);
+            listener.onClick(product);
         });
     }
 
@@ -98,6 +105,6 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Ho
     }
 
     public interface SetOnClickProductListener{
-        void onClick();
+        void onClick(Product product);
     }
 }
