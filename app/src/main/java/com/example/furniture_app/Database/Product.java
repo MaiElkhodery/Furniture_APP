@@ -1,6 +1,7 @@
 package com.example.furniture_app.Database;
 
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
@@ -17,6 +18,7 @@ public class Product implements Serializable {
     boolean inFavorite = false;
 
 
+    @Ignore
     public Product(int img, String name, String price, boolean inFavorite) {
         this.img = img;
         this.name = name;
@@ -24,12 +26,12 @@ public class Product implements Serializable {
         this.inFavorite = inFavorite;
     }
 
+    @Ignore
     public Product(int img, String name, String price) {
         this.img = img;
         this.name = name;
         this.price = price;
     }
-
     public Product(long id, int img, String name, String description, String price) {
         this.id = id;
         this.img = img;

@@ -6,13 +6,17 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class ViewModel extends AndroidViewModel {
     private Repository repository;
+    private  LiveData<List<Product>> allProducts;
+    private  LiveData<List<Product>> allFavProducts;
     public ViewModel(@NonNull Application application) {
         super(application);
         repository=new Repository(application);
+        allProducts= repository.getAllProducts();
+        allFavProducts=repository.getFavProducts();
     }
     public void insertUser(User user){
         repository.insertUser(user);
@@ -26,6 +30,9 @@ public class ViewModel extends AndroidViewModel {
     public User getUser(String email){
         return repository.getUser(email);
     }
+    public User getUserById(){
+        return repository.getUserById();
+    }
 
     public void insertProduct(Product product){
         repository.insertProduct(product);
@@ -36,7 +43,18 @@ public class ViewModel extends AndroidViewModel {
     public void deleteProduct(Product product){
         repository.deleteProduct(product);
     }
-    public LiveData<ArrayList<Product>> getAllProducts(){
-        return repository.getAllProducts();
+    public LiveData<List<Product>> getAllProducts(){
+        return allProducts;
     }
+
+    public void insertProductToFav(Product product){
+        repository.insertProductToFav(product);
+    }
+    public void deleteProductFromFav(Product product){
+        repository.deleteProductFromFav(product);
+    }
+    public LiveData<List<Product>> getAllFavProducts(){
+        return allFavProducts;
+    }
+
 }

@@ -40,7 +40,7 @@
         android:background="@drawable/edit_text_background"
         android:ems="10"
         android:hint="Enter Your Name"
-        android:hintColor="#979797"
+        android:textColorHint="#979797"
         android:inputType="textEmailAddress"
         android:paddingLeft="12dp"
         android:paddingTop="17dp"
@@ -72,7 +72,7 @@
         android:background="@drawable/edit_text_background"
         android:ems="10"
         android:hint="Enter Your Password"
-        android:hintColor="#979797"
+        android:textColorHint="#979797"
         android:paddingLeft="12dp"
         android:paddingTop="17dp"
         android:paddingBottom="17dp"
@@ -103,7 +103,7 @@
         android:background="@drawable/edit_text_background"
         android:ems="10"
         android:hint="Enter Your Email"
-        android:hintColor="#979797"
+        android:textColorHint="#979797"
         android:inputType="textEmailAddress"
         android:paddingLeft="12dp"
         android:paddingTop="17dp"
@@ -144,7 +144,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/signup_textView"
+        android:id="@+id/login_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"

@@ -1,10 +1,10 @@
 package com.example.furniture_app;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,7 +16,7 @@ import com.example.furniture_app.Database.ViewModel;
 import com.example.furniture_app.databinding.FragmentLoginBinding;
 
 public class LoginFragment extends Fragment {
-    String email;
+    public static String email;
     String password;
     ViewModel viewModel;
     FragmentLoginBinding loginBinding;
@@ -44,12 +44,15 @@ public class LoginFragment extends Fragment {
             email=loginBinding.emailEditText.getText().toString();
             password= loginBinding.passwordEditText.getText().toString();
             User user = viewModel.getUser(email);
-            if (user!=null && user.getPassword().equals(password)){
-                Navigation.findNavController(view)
-                        .navigate(LoginFragmentDirections.actionLoginFragmentToHomeFragment2());
-            }else {
-                Toast.makeText(getContext(), "Invalid email or password", Toast.LENGTH_SHORT).show();
-            }
+            startActivity( new Intent(getActivity(),HomeActivity.class));
+//            if (user!=null && user.getPassword().equals(password)){
+//                startActivity( new Intent(getActivity(),HomeActivity.class));
+//            }else {
+//                Toast.makeText(getContext(), "Invalid email or password", Toast.LENGTH_SHORT).show();
+//            }
+        });
+        loginBinding.signupTextView.setOnClickListener(view1 -> {
+            Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_signupFragment);
         });
     }
 

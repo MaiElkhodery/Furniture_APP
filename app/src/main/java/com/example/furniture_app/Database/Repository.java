@@ -5,16 +5,20 @@ import android.os.AsyncTask;
 
 import androidx.lifecycle.LiveData;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class Repository {
-    private UserDAO userDAO;
-    private ProductDAO productDAO;
+    private final UserDAO userDAO;
+    private final ProductDAO productDAO;
+    private final FavoriteDAO favoriteDAO;
+    private LiveData<List<Product>> allProducts;
 
     public Repository(Application application){
         Database database = Database.getINSTANCE(application);
         userDAO= database.userDAO();
         productDAO= database.productDAO();
+        favoriteDAO=database.favoriteDAO();
+        allProducts= productDAO.getAllProducts();
     }
     public void insertUser(User user){
         new InsertUserAsyncTask(userDAO).execute(user);
@@ -27,6 +31,9 @@ public class Repository {
     }
     public User getUser(String email){
         return userDAO.getUser(email);
+    }
+    public User getUserById(){
+        return userDAO.getUserById();
     }
 
     private static class InsertUserAsyncTask extends AsyncTask<User, Void, Void> {
@@ -79,8 +86,8 @@ public class Repository {
     public Product getProduct(String name){
         return productDAO.getProduct(name);
     }
-    public LiveData<ArrayList<Product>> getAllProducts(){
-        return productDAO.getAllProducts();
+    public LiveData<List<Product>> getAllProducts(){
+        return allProducts;
     }
 
     private static class InsertProductAsyncTask extends AsyncTask<Product, Void, Void> {
@@ -119,4 +126,40 @@ public class Repository {
             return null;
         }
     }
+
+
+    public void insertProductToFav(Product product){
+        new InsertFavProductAsyncTask(favoriteDAO).execute(product);
+    }
+    public void deleteProductFromFav(Product product){
+        new DeleteFavProductAsyncTask(favoriteDAO).execute(product);
+    }
+    public LiveData<List<Product>> getFavProducts(){
+        return favoriteDAO.getAllFavProducts();
+    }
+    private static class InsertFavProductAsyncTask extends AsyncTask<Product, Void, Void> {
+
+        private FavoriteDAO favoriteDAO;
+        private InsertFavProductAsyncTask(FavoriteDAO favoriteDAO){
+            this.favoriteDAO=favoriteDAO;
+        }
+        @Override
+        protected Void doInBackground(Product... products) {
+            favoriteDAO.insert(products[0]);
+            return null;
+        }
+    }
+    private static class DeleteFavProductAsyncTask extends AsyncTask<Product, Void, Void> {
+
+        private FavoriteDAO favoriteDAO;
+        private DeleteFavProductAsyncTask(FavoriteDAO favoriteDAO){
+            this.favoriteDAO=favoriteDAO;
+        }
+        @Override
+        protected Void doInBackground(Product... products) {
+            favoriteDAO.delete(products[0]);
+            return null;
+        }
+    }
+
 }

@@ -16,4 +16,7 @@ public interface UserDAO {
     void updateUserData(User user);
     @Query("SELECT * FROM User WHERE email=:email")
     User getUser(String email);
+    @Query("SELECT * FROM User WHERE id=0")
+    User getUserById();
+
 }

@@ -11,6 +11,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class HomeActivity extends AppCompatActivity {
 
+    public static NavController navController;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,7 +20,7 @@ public class HomeActivity extends AppCompatActivity {
         BottomNavigationView navigationBottom = findViewById(R.id.bottomNavigationView);
         NavHostFragment fragmentContainer = (NavHostFragment) getSupportFragmentManager().
                 findFragmentById(R.id.nav_host_fragment);
-        NavController navController = fragmentContainer.getNavController();
+        navController = fragmentContainer.getNavController();
         NavigationUI.setupWithNavController(navigationBottom, navController);
     }
 }

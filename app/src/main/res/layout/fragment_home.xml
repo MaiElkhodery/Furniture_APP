@@ -14,6 +14,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="52dp"
         android:layout_marginEnd="80dp"
+        app:iconifiedByDefault="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -79,7 +80,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="23dp"
+        android:layout_marginTop="20dp"
         android:text="Categories"
         android:textColor="#934C25"
         android:textSize="24sp"
@@ -87,11 +88,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
 
-    <ScrollView
+    <HorizontalScrollView
         android:id="@+id/categories_layout"
         android:layout_width="match_parent"
         android:layout_height="30dp"
-        android:layout_marginTop="29dp"
+        android:layout_marginTop="25dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2">
@@ -109,6 +110,7 @@
                 android:text="All"
                 android:textColor="#934C25"
                 android:textSize="20sp" />
+
             <TextView
                 android:id="@+id/chairTextView"
                 android:layout_width="wrap_content"
@@ -117,6 +119,7 @@
                 android:text="Chairs"
                 android:textColor="@color/black"
                 android:textSize="20sp" />
+
             <TextView
                 android:id="@+id/sofaTextView"
                 android:layout_width="wrap_content"
@@ -125,6 +128,7 @@
                 android:text="Sofa"
                 android:textColor="@color/black"
                 android:textSize="20sp" />
+
             <TextView
                 android:id="@+id/bedTextView"
                 android:layout_width="wrap_content"
@@ -133,6 +137,7 @@
                 android:text="Beds"
                 android:textColor="@color/black"
                 android:textSize="20sp" />
+
             <TextView
                 android:id="@+id/tableTextView"
                 android:layout_width="wrap_content"
@@ -141,6 +146,7 @@
                 android:text="Tables"
                 android:textColor="@color/black"
                 android:textSize="20sp" />
+
             <TextView
                 android:id="@+id/lampTextView"
                 android:layout_width="wrap_content"
@@ -151,18 +157,18 @@
                 android:textSize="20sp" />
         </LinearLayout>
 
-    </ScrollView>
+    </HorizontalScrollView>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/categoriesContainer"
-        tools:listitem="@layout/data_model"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="29dp"
+        android:layout_marginTop="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/categories_layout"/>
+        app:layout_constraintTop_toBottomOf="@+id/categories_layout"
+        tools:listitem="@layout/data_model" />
 
 
 

@@ -1,5 +1,6 @@
 package com.example.furniture_app;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Patterns;
@@ -50,11 +51,13 @@ public class SignupFragment extends Fragment {
             if (isValidEmail(email) && isValidPassword(password)) {
                 User user = new User(email, username, password );
                 viewModel.insertUser(user);
-                Navigation.findNavController(view)
-                        .navigate(SignupFragmentDirections.actionSignupFragmentToHomeFragment2());
+                startActivity( new Intent(getActivity(),HomeActivity.class));
             } else {
                 Toast.makeText(getContext(), "Invalid email or password", Toast.LENGTH_SHORT).show();
             }
+        });
+        signupBinding.loginTextView.setOnClickListener(view12 -> {
+            Navigation.findNavController(view).navigate(R.id.action_signupFragment_to_loginFragment);
         });
     }
     private boolean isValidEmail(String email) {

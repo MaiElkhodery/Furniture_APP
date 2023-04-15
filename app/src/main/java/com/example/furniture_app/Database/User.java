@@ -1,6 +1,7 @@
 package com.example.furniture_app.Database;
 
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity
@@ -19,6 +20,7 @@ public class User{
         this.phone_no = phone_no;
     }
 
+    @Ignore
     public User(String email, String name, String password) {
         this.email = email;
         this.name = name;

@@ -1,5 +1,7 @@
 package com.example.furniture_app;
 
+import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,33 +10,43 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatImageButton;
-import androidx.lifecycle.LiveData;
-import androidx.navigation.Navigation;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelStoreOwner;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.furniture_app.Database.Product;
+import com.example.furniture_app.Database.ViewModel;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Holder> {
 
     ArrayList<Product> products;
-    public CategoriesAdapter(LiveData<ArrayList<Product>>  productsData){
-        products=productsData.getValue();
+    ViewModel viewModel;
+    Context context;
+    SetOnClickProductListener listener;
+    public CategoriesAdapter(Context context){
+        this.context = context;
+        products = new ArrayList<>();
+        viewModel = new ViewModelProvider((ViewModelStoreOwner) context).get(ViewModel.class);
+        listener=(SetOnClickProductListener) context;
     }
     @NonNull
     @Override
     public Holder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.data_model, parent);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.data_model, parent,false);
         return new Holder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull Holder holder, int position){
         Product product = products.get(position);
+        Log.d("IsProductNull", product.getName());
         holder.productImage.setImageResource(product.getImg());
         holder.productName.setText(product.getName());
         holder.productPrice.setText(product.getPrice());
+
         if(product.isInFavorite()){
             holder.favoriteButton.setImageResource(R.drawable.favorite_full);
         }else{
@@ -42,15 +54,21 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Ho
         }
         holder.favoriteButton.setOnClickListener(view -> {
             if(product.isInFavorite()){
+                Log.d("Favorite", "NotYet");
                 holder.favoriteButton.setImageResource(R.drawable.favorite);
                 product.setInFavorite(false);
+                viewModel.deleteProductFromFav(product);
+
             }else{
+                Log.d("Favorite", "it is");
                 holder.favoriteButton.setImageResource(R.drawable.favorite_full);
                 product.setInFavorite(true);
+                viewModel.insertProductToFav(product);
             }
+
         });
         holder.itemView.setOnClickListener(view -> {
-            Navigation.findNavController(holder.itemView).navigate(HomeFragmentDirections.actionHomeFragmentToProductDetailsFragment(product));
+            listener.onClick();
         });
     }
 
@@ -70,11 +88,16 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Ho
     }
     @Override
     public int getItemCount() {
+        Log.d("getItemCount", products.size()+"");
         return products.size();
     }
-    public void setProducts(ArrayList<Product> products) {
-        this.products = products;
+    public void setProducts(List<Product> products) {
+        this.products=new ArrayList<>();
+        this.products.addAll(products);
         notifyDataSetChanged();
     }
 
+    public interface SetOnClickProductListener{
+        void onClick();
+    }
 }
