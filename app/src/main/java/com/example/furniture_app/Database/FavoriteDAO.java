@@ -11,9 +11,9 @@ import java.util.List;
 @Dao
 public interface FavoriteDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insert(Product product);
+    void insert(FavoriteProducts product);
     @Delete
-    void delete(Product product);
+    void delete(FavoriteProducts product);
     @Query("SELECT * FROM product")
-    LiveData<List<Product>> getAllFavProducts();
+    LiveData<List<FavoriteProducts>> getAllFavProducts();
 }

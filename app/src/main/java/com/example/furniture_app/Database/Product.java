@@ -12,7 +12,6 @@ public class Product implements Serializable {
     long id;
     int img;
     String name;
-
     String description;
     String price;
     boolean inFavorite = false;

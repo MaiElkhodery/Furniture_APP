@@ -11,7 +11,7 @@ import java.util.List;
 public class ViewModel extends AndroidViewModel {
     private Repository repository;
     private  LiveData<List<Product>> allProducts;
-    private  LiveData<List<Product>> allFavProducts;
+    private  LiveData<List<FavoriteProducts>> allFavProducts;
     public ViewModel(@NonNull Application application) {
         super(application);
         repository=new Repository(application);
@@ -47,13 +47,13 @@ public class ViewModel extends AndroidViewModel {
         return allProducts;
     }
 
-    public void insertProductToFav(Product product){
+    public void insertProductToFav(FavoriteProducts product){
         repository.insertProductToFav(product);
     }
-    public void deleteProductFromFav(Product product){
+    public void deleteProductFromFav(FavoriteProducts product){
         repository.deleteProductFromFav(product);
     }
-    public LiveData<List<Product>> getAllFavProducts(){
+    public LiveData<List<FavoriteProducts>> getAllFavProducts(){
         return allFavProducts;
     }
 

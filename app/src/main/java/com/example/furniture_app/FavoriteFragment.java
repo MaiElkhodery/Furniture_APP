@@ -18,7 +18,7 @@ public class FavoriteFragment extends Fragment {
 
     FragmentFavoriteBinding fragmentBinding;
     ViewModel viewModel;
-    FavoriteListAdapter adapter;
+    public static FavoriteListAdapter adapter ;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,13 +34,16 @@ public class FavoriteFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        viewModel=new ViewModel(getActivity().getApplication());
         initRecyclerView();
     }
 
     public void initRecyclerView(){
         RecyclerView recyclerView = fragmentBinding.favoritesContainer;
-        adapter = new FavoriteListAdapter();
-        recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        viewModel.getAllFavProducts().observe(getViewLifecycleOwner(),products -> {
+            adapter = new FavoriteListAdapter(products);
+        });
+        recyclerView.setAdapter(adapter);
     }
 }

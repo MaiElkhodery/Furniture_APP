@@ -30,9 +30,6 @@
                 android:resource="@xml/searchable_configuration" />
         </activity>
         <activity
-            android:name=".HomeActivity"
-            android:exported="false" />
-        <activity
             android:name=".MainActivity"
             android:exported="false" >
 

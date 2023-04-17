@@ -9,36 +9,36 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.furniture_app.Database.Product;
-import com.example.furniture_app.Database.ViewModel;
+import com.example.furniture_app.Database.FavoriteProducts;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class FavoriteListAdapter extends RecyclerView.Adapter<FavoriteListAdapter.Holder>{
 
-    ArrayList<Product> favorite_list;
-    ViewModel viewModel;
+    ArrayList<FavoriteProducts> favorite_list= new ArrayList<>();
+    public FavoriteListAdapter(List<FavoriteProducts> favProducts){
+        favorite_list.addAll(favProducts);
+    }
     @NonNull
     @Override
     public Holder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.data_model, parent,false);
-        getAllFavProducts();
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.favorite_data_model, parent,false);
         return new Holder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull Holder holder, int position) {
-        Product fav_product = favorite_list.get(position);
+        FavoriteProducts fav_product = favorite_list.get(position);
         holder.productImage.setImageResource(fav_product.getImg());
         holder.productName.setText(fav_product.getName());
         holder.productPrice.setText(fav_product.getPrice());
     }
 
-    private void getAllFavProducts(){
-        viewModel.getAllFavProducts().observeForever(products -> {
-            favorite_list = new ArrayList<>();
-            favorite_list.addAll(products);
-        });
+    public void setFavProductsList(List<FavoriteProducts> products){
+        favorite_list = new ArrayList<>();
+        favorite_list.addAll(products);
+        notifyDataSetChanged();
     }
     @Override
     public int getItemCount() {
@@ -62,12 +62,24 @@ public class FavoriteListAdapter extends RecyclerView.Adapter<FavoriteListAdapte
             return productImage;
         }
 
+        public void setProductImage(ImageView productImage) {
+            this.productImage = productImage;
+        }
+
         public TextView getProductName() {
             return productName;
         }
 
+        public void setProductName(TextView productName) {
+            this.productName = productName;
+        }
+
         public TextView getProductPrice() {
             return productPrice;
+        }
+
+        public void setProductPrice(TextView productPrice) {
+            this.productPrice = productPrice;
         }
     }
 }

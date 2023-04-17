@@ -128,35 +128,35 @@ public class Repository {
     }
 
 
-    public void insertProductToFav(Product product){
+    public void insertProductToFav(FavoriteProducts product){
         new InsertFavProductAsyncTask(favoriteDAO).execute(product);
     }
-    public void deleteProductFromFav(Product product){
+    public void deleteProductFromFav(FavoriteProducts product){
         new DeleteFavProductAsyncTask(favoriteDAO).execute(product);
     }
-    public LiveData<List<Product>> getFavProducts(){
+    public LiveData<List<FavoriteProducts>> getFavProducts(){
         return favoriteDAO.getAllFavProducts();
     }
-    private static class InsertFavProductAsyncTask extends AsyncTask<Product, Void, Void> {
+    private static class InsertFavProductAsyncTask extends AsyncTask<FavoriteProducts, Void, Void> {
 
         private FavoriteDAO favoriteDAO;
         private InsertFavProductAsyncTask(FavoriteDAO favoriteDAO){
             this.favoriteDAO=favoriteDAO;
         }
         @Override
-        protected Void doInBackground(Product... products) {
+        protected Void doInBackground(FavoriteProducts... products) {
             favoriteDAO.insert(products[0]);
             return null;
         }
     }
-    private static class DeleteFavProductAsyncTask extends AsyncTask<Product, Void, Void> {
+    private static class DeleteFavProductAsyncTask extends AsyncTask<FavoriteProducts, Void, Void> {
 
         private FavoriteDAO favoriteDAO;
         private DeleteFavProductAsyncTask(FavoriteDAO favoriteDAO){
             this.favoriteDAO=favoriteDAO;
         }
         @Override
-        protected Void doInBackground(Product... products) {
+        protected Void doInBackground(FavoriteProducts... products) {
             favoriteDAO.delete(products[0]);
             return null;
         }

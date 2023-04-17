@@ -1,6 +1,5 @@
 package com.example.furniture_app;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -44,7 +43,7 @@ public class LoginFragment extends Fragment {
             email=loginBinding.emailEditText.getText().toString();
             password= loginBinding.passwordEditText.getText().toString();
             User user = viewModel.getUser(email);
-            startActivity( new Intent(getActivity(),HomeActivity.class));
+            //startActivity( new Intent(getActivity(),HomeActivity.class));
 //            if (user!=null && user.getPassword().equals(password)){
 //                startActivity( new Intent(getActivity(),HomeActivity.class));
 //            }else {
