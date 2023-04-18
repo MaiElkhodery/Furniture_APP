@@ -36,7 +36,7 @@ public class FavoriteListAdapter extends RecyclerView.Adapter<FavoriteListAdapte
     }
 
     public void setFavProductsList(List<FavoriteProducts> products){
-        favorite_list = new ArrayList<>();
+        favorite_list.clear();
         favorite_list.addAll(products);
         notifyDataSetChanged();
     }
@@ -57,29 +57,9 @@ public class FavoriteListAdapter extends RecyclerView.Adapter<FavoriteListAdapte
             productName = itemView.findViewById(R.id.productNameFav);
             productPrice = itemView.findViewById(R.id.productPriceFav);
         }
+    }
 
-        public ImageView getProductImage() {
-            return productImage;
-        }
-
-        public void setProductImage(ImageView productImage) {
-            this.productImage = productImage;
-        }
-
-        public TextView getProductName() {
-            return productName;
-        }
-
-        public void setProductName(TextView productName) {
-            this.productName = productName;
-        }
-
-        public TextView getProductPrice() {
-            return productPrice;
-        }
-
-        public void setProductPrice(TextView productPrice) {
-            this.productPrice = productPrice;
-        }
+    public FavoriteProducts getProduct(int position){
+        return favorite_list.get(position);
     }
 }

@@ -21,19 +21,12 @@ public abstract class Database extends RoomDatabase {
         @Override
         public void onCreate(@NonNull SupportSQLiteDatabase db) {
             super.onCreate(db);
-            Executors.newSingleThreadExecutor().execute(new Runnable() {
-                @Override
-                public void run() {
-                    ProductDAO productDAO = INSTANCE.productDAO();
-                    productDAO.insert(new Product(R.drawable.yellow_sofa,"Modern Sofas","450$"));
-                    productDAO.insert(new Product(R.drawable.seater_sofa,"Modern Sofas","450$"));
-                    productDAO.insert(new Product(R.drawable.seater_sofa,"Modern Sofas","450$"));
-                    productDAO.insert(new Product(R.drawable.yellow_sofa,"Modern Sofas","450$"));
-                    productDAO.insert(new Product(R.drawable.yellow_sofa,"Modern Sofas","450$"));
-                    productDAO.insert(new Product(R.drawable.yellow_sofa,"Modern Sofas","450$"));
-                    productDAO.insert(new Product(R.drawable.yellow_sofa,"Modern Sofas","450$"));
-                    productDAO.insert(new Product(R.drawable.yellow_sofa,"Modern Sofas","450$"));
-                }
+            Executors.newSingleThreadExecutor().execute(() -> {
+                ProductDAO productDAO = INSTANCE.productDAO();
+                productDAO.insert(new Product(R.drawable.yellow_sofa,"Modern Sofas","450$"));
+                productDAO.insert(new Product(R.drawable.seater_sofa,"Modern Sofas","450$"));
+                productDAO.insert(new Product(R.drawable.table_lamp,"Modern Sofas","450$"));
+                productDAO.insert(new Product(R.drawable.modern_velvet,"Modern Sofas","450$"));
             });
 
         }

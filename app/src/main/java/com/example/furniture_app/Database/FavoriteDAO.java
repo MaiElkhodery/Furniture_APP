@@ -14,6 +14,6 @@ public interface FavoriteDAO {
     void insert(FavoriteProducts product);
     @Delete
     void delete(FavoriteProducts product);
-    @Query("SELECT * FROM product")
+    @Query("SELECT * FROM FavoriteProducts")
     LiveData<List<FavoriteProducts>> getAllFavProducts();
 }

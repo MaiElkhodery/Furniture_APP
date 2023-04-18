@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.furniture_app.Database.Product;
+import com.example.furniture_app.Database.SharedViewModel;
 import com.example.furniture_app.Database.ViewModel;
 import com.example.furniture_app.databinding.FragmentHomeBinding;
 
@@ -23,7 +24,8 @@ public class HomeFragment extends Fragment implements CategoriesAdapter.Category
     public static ViewModel viewModel;
     CategoriesAdapter adapter;
     NavController navController;
-    FavoriteListAdapter favAdapter ;
+    SharedViewModel sharedViewModel;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +43,7 @@ public class HomeFragment extends Fragment implements CategoriesAdapter.Category
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         navController= Navigation.findNavController(view);
+        sharedViewModel=MainActivity.sharedViewModel;
         initRecyclerView();
     }
 
@@ -61,9 +64,9 @@ public class HomeFragment extends Fragment implements CategoriesAdapter.Category
 
     @Override
     public void updateFavList() {
-//        viewModel.getAllFavProducts().observe(getViewLifecycleOwner(), products -> {
-//            favAdapter=new FavoriteListAdapter(products);
-//            favAdapter.setFavProductsList(products);
-//        });
+        viewModel.getAllFavProducts().observe(getViewLifecycleOwner(), products -> {
+            sharedViewModel.setListOfFavProducts(products);
+        });
     }
+
 }

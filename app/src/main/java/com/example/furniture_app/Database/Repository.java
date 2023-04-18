@@ -12,6 +12,7 @@ public class Repository {
     private final ProductDAO productDAO;
     private final FavoriteDAO favoriteDAO;
     private LiveData<List<Product>> allProducts;
+    private LiveData<List<FavoriteProducts>> allFavProducts;
 
     public Repository(Application application){
         Database database = Database.getINSTANCE(application);
@@ -19,6 +20,7 @@ public class Repository {
         productDAO= database.productDAO();
         favoriteDAO=database.favoriteDAO();
         allProducts= productDAO.getAllProducts();
+        allFavProducts=favoriteDAO.getAllFavProducts();
     }
     public void insertUser(User user){
         new InsertUserAsyncTask(userDAO).execute(user);
@@ -135,7 +137,7 @@ public class Repository {
         new DeleteFavProductAsyncTask(favoriteDAO).execute(product);
     }
     public LiveData<List<FavoriteProducts>> getFavProducts(){
-        return favoriteDAO.getAllFavProducts();
+        return allFavProducts;
     }
     private static class InsertFavProductAsyncTask extends AsyncTask<FavoriteProducts, Void, Void> {
 

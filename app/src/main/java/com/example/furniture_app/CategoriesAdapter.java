@@ -1,5 +1,6 @@
 package com.example.furniture_app;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,7 +42,7 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Ho
         holder.productImage.setImageResource(product.getImg());
         holder.productName.setText(product.getName());
         holder.productPrice.setText(product.getPrice());
-
+        Log.d("product-id", product.getId()+"");
         if(product.isInFavorite()){
             holder.favoriteButton.setImageResource(R.drawable.favorite_full);
         }else{
@@ -60,11 +61,9 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Ho
                 viewModel.insertProductToFav(favProduct);
             }
 
+            listener.updateFavList();
         });
-        listener.updateFavList();
-        holder.itemView.setOnClickListener(view -> {
-            listener.onClick(product);
-        });
+        holder.itemView.setOnClickListener(view -> listener.onClick(product));
     }
 
     static class Holder extends RecyclerView.ViewHolder{
