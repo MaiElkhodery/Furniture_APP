@@ -9,15 +9,15 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.furniture_app.Database.FavoriteProducts;
+import com.example.furniture_app.Database.Product;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class FavoriteListAdapter extends RecyclerView.Adapter<FavoriteListAdapter.Holder>{
 
-    ArrayList<FavoriteProducts> favorite_list= new ArrayList<>();
-    public FavoriteListAdapter(List<FavoriteProducts> favProducts){
+    ArrayList<Product> favorite_list= new ArrayList<>();
+    public FavoriteListAdapter(ArrayList<Product> favProducts){
         favorite_list.addAll(favProducts);
     }
     @NonNull
@@ -29,13 +29,13 @@ public class FavoriteListAdapter extends RecyclerView.Adapter<FavoriteListAdapte
 
     @Override
     public void onBindViewHolder(@NonNull Holder holder, int position) {
-        FavoriteProducts fav_product = favorite_list.get(position);
-        holder.productImage.setImageResource(fav_product.getImg());
-        holder.productName.setText(fav_product.getName());
-        holder.productPrice.setText(fav_product.getPrice());
+        Product favProduct = favorite_list.get(position);
+        holder.productImage.setImageResource(favProduct.getImg());
+        holder.productName.setText(String.valueOf(favProduct.getName()));
+        holder.productPrice.setText(String.valueOf(favProduct.getPrice()));
     }
 
-    public void setFavProductsList(List<FavoriteProducts> products){
+    public void setFavProductsList(List<Product> products){
         favorite_list.clear();
         favorite_list.addAll(products);
         notifyDataSetChanged();
@@ -59,7 +59,7 @@ public class FavoriteListAdapter extends RecyclerView.Adapter<FavoriteListAdapte
         }
     }
 
-    public FavoriteProducts getProduct(int position){
+    public Product getProduct(int position){
         return favorite_list.get(position);
     }
 }

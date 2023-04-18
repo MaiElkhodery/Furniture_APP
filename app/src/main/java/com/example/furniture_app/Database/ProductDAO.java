@@ -22,4 +22,6 @@ public interface ProductDAO {
     LiveData<List<Product>> getAllProducts();
     @Query("SELECT * FROM Product WHERE name=:name")
     Product getProduct(String name);
+    @Query("SELECT * FROM Product WHERE inFavorite=1")
+    LiveData<List<Product>> getAllFavProducts();
 }

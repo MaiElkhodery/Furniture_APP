@@ -11,12 +11,10 @@ import java.util.List;
 public class ViewModel extends AndroidViewModel {
     private Repository repository;
     private  LiveData<List<Product>> allProducts;
-    private  LiveData<List<FavoriteProducts>> allFavProducts;
     public ViewModel(@NonNull Application application) {
         super(application);
         repository=new Repository(application);
         allProducts= repository.getAllProducts();
-        allFavProducts=repository.getFavProducts();
     }
     public void insertUser(User user){
         repository.insertUser(user);
@@ -47,14 +45,7 @@ public class ViewModel extends AndroidViewModel {
         return allProducts;
     }
 
-    public void insertProductToFav(FavoriteProducts product){
-        repository.insertProductToFav(product);
+    public LiveData<List<Product>> getAllFavProducts(){
+        return repository.getAllFavProducts();
     }
-    public void deleteProductFromFav(FavoriteProducts product){
-        repository.deleteProductFromFav(product);
-    }
-    public LiveData<List<FavoriteProducts>> getAllFavProducts(){
-        return allFavProducts;
-    }
-
 }

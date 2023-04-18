@@ -10,17 +10,13 @@ import java.util.List;
 public class Repository {
     private final UserDAO userDAO;
     private final ProductDAO productDAO;
-    private final FavoriteDAO favoriteDAO;
     private LiveData<List<Product>> allProducts;
-    private LiveData<List<FavoriteProducts>> allFavProducts;
 
     public Repository(Application application){
         Database database = Database.getINSTANCE(application);
         userDAO= database.userDAO();
         productDAO= database.productDAO();
-        favoriteDAO=database.favoriteDAO();
         allProducts= productDAO.getAllProducts();
-        allFavProducts=favoriteDAO.getAllFavProducts();
     }
     public void insertUser(User user){
         new InsertUserAsyncTask(userDAO).execute(user);
@@ -91,6 +87,9 @@ public class Repository {
     public LiveData<List<Product>> getAllProducts(){
         return allProducts;
     }
+    public LiveData<List<Product>> getAllFavProducts(){
+        return productDAO.getAllFavProducts();
+    }
 
     private static class InsertProductAsyncTask extends AsyncTask<Product, Void, Void> {
 
@@ -125,41 +124,6 @@ public class Repository {
         @Override
         protected Void doInBackground(Product... products) {
             productDAO.update(products[0]);
-            return null;
-        }
-    }
-
-
-    public void insertProductToFav(FavoriteProducts product){
-        new InsertFavProductAsyncTask(favoriteDAO).execute(product);
-    }
-    public void deleteProductFromFav(FavoriteProducts product){
-        new DeleteFavProductAsyncTask(favoriteDAO).execute(product);
-    }
-    public LiveData<List<FavoriteProducts>> getFavProducts(){
-        return allFavProducts;
-    }
-    private static class InsertFavProductAsyncTask extends AsyncTask<FavoriteProducts, Void, Void> {
-
-        private FavoriteDAO favoriteDAO;
-        private InsertFavProductAsyncTask(FavoriteDAO favoriteDAO){
-            this.favoriteDAO=favoriteDAO;
-        }
-        @Override
-        protected Void doInBackground(FavoriteProducts... products) {
-            favoriteDAO.insert(products[0]);
-            return null;
-        }
-    }
-    private static class DeleteFavProductAsyncTask extends AsyncTask<FavoriteProducts, Void, Void> {
-
-        private FavoriteDAO favoriteDAO;
-        private DeleteFavProductAsyncTask(FavoriteDAO favoriteDAO){
-            this.favoriteDAO=favoriteDAO;
-        }
-        @Override
-        protected Void doInBackground(FavoriteProducts... products) {
-            favoriteDAO.delete(products[0]);
             return null;
         }
     }
