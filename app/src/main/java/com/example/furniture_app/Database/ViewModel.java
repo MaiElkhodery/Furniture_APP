@@ -48,4 +48,8 @@ public class ViewModel extends AndroidViewModel {
     public LiveData<List<Product>> getAllFavProducts(){
         return repository.getAllFavProducts();
     }
+
+    public LiveData<List<Product>> getProductsInCart(){
+        return repository.getProductsInCart();
+    }
 }

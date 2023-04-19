@@ -17,8 +17,7 @@ import java.util.List;
 public class FavoriteListAdapter extends RecyclerView.Adapter<FavoriteListAdapter.Holder>{
 
     ArrayList<Product> favorite_list= new ArrayList<>();
-    public FavoriteListAdapter(ArrayList<Product> favProducts){
-        favorite_list.addAll(favProducts);
+    public FavoriteListAdapter(){
     }
     @NonNull
     @Override

@@ -91,6 +91,10 @@ public class Repository {
         return productDAO.getAllFavProducts();
     }
 
+    public LiveData<List<Product>> getProductsInCart(){
+        return productDAO.getProductsInShoppingCart();
+    }
+
     private static class InsertProductAsyncTask extends AsyncTask<Product, Void, Void> {
 
         private ProductDAO productDAO;

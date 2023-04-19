@@ -97,10 +97,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="18dp"
         android:text="Categories"
         android:textColor="#934C25"
-        android:textSize="24sp"
+        android:textSize="21sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
@@ -109,7 +109,7 @@
         android:id="@+id/categories_layout"
         android:layout_width="match_parent"
         android:layout_height="30dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2">
@@ -126,7 +126,7 @@
                 android:layout_marginStart="24dp"
                 android:text="All"
                 android:textColor="#934C25"
-                android:textSize="20sp" />
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/chairTextView"
@@ -135,7 +135,7 @@
                 android:layout_marginStart="20dp"
                 android:text="Chairs"
                 android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/sofaTextView"
@@ -144,7 +144,7 @@
                 android:layout_marginStart="20dp"
                 android:text="Sofa"
                 android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/bedTextView"
@@ -153,7 +153,7 @@
                 android:layout_marginStart="20dp"
                 android:text="Beds"
                 android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/tableTextView"
@@ -162,7 +162,7 @@
                 android:layout_marginStart="20dp"
                 android:text="Tables"
                 android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/lampTextView"
@@ -171,7 +171,7 @@
                 android:layout_marginStart="20dp"
                 android:text="Lamps"
                 android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:textSize="18sp" />
         </LinearLayout>
 
     </HorizontalScrollView>

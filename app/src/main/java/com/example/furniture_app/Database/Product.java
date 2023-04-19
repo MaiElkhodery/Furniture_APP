@@ -13,12 +13,14 @@ public class Product implements Serializable {
     int img;
     String name;
     String description;
-    String price;
+    int price;
     boolean inFavorite = false;
+    boolean isProductInCart = false;
+    int quantity =0;
 
 
     @Ignore
-    public Product(int img, String name, String price, boolean inFavorite) {
+    public Product(int img, String name, int price, boolean inFavorite) {
         this.img = img;
         this.name = name;
         this.price = price;
@@ -26,12 +28,12 @@ public class Product implements Serializable {
     }
 
     @Ignore
-    public Product(int img, String name, String price) {
+    public Product(int img, String name, int price) {
         this.img = img;
         this.name = name;
         this.price = price;
     }
-    public Product(long id, int img, String name, String description, String price) {
+    public Product(long id, int img, String name, String description, int price) {
         this.id = id;
         this.img = img;
         this.name = name;
@@ -41,6 +43,26 @@ public class Product implements Serializable {
 
     public String getDescription() {
         return description;
+    }
+
+    public boolean getIsProductInCart() {
+        return isProductInCart;
+    }
+
+    public void setIsProductInCart(boolean addedToCart) {
+        isProductInCart = addedToCart;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        if(isProductInCart){
+            this.quantity = quantity;
+        }else{
+            this.quantity=0;
+        }
     }
 
     public void setDescription(String description) {
@@ -69,11 +91,11 @@ public class Product implements Serializable {
         this.name = name;
     }
 
-    public String getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 

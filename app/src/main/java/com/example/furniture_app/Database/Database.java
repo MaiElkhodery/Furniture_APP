@@ -11,11 +11,10 @@ import com.example.furniture_app.R;
 
 import java.util.concurrent.Executors;
 
-@androidx.room.Database(entities = {User.class,Product.class,FavoriteProducts.class},version = 1)
+@androidx.room.Database(entities = {User.class,Product.class},version = 1)
 public abstract class Database extends RoomDatabase {
     public abstract UserDAO userDAO();
     public abstract ProductDAO productDAO();
-    public abstract FavoriteDAO favoriteDAO();
     public static volatile Database INSTANCE;
     private static final RoomDatabase.Callback DatabaseCallBack = new Callback() {
         @Override
@@ -23,10 +22,10 @@ public abstract class Database extends RoomDatabase {
             super.onCreate(db);
             Executors.newSingleThreadExecutor().execute(() -> {
                 ProductDAO productDAO = INSTANCE.productDAO();
-                productDAO.insert(new Product(R.drawable.yellow_sofa,"Modern Sofas","450$"));
-                productDAO.insert(new Product(R.drawable.seater_sofa,"Modern Sofas","450$"));
-                productDAO.insert(new Product(R.drawable.table_lamp,"Modern Sofas","450$"));
-                productDAO.insert(new Product(R.drawable.modern_velvet,"Modern Sofas","450$"));
+                productDAO.insert(new Product(R.drawable.yellow_sofa,"Modern Sofas",450));
+                productDAO.insert(new Product(R.drawable.seater_sofa,"Modern Sofas",450));
+                productDAO.insert(new Product(R.drawable.table_lamp,"Modern Sofas",450));
+                productDAO.insert(new Product(R.drawable.modern_velvet,"Modern Sofas",450));
             });
 
         }

@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="7dp">
+    android:layout_marginTop="7dp"
+    android:elevation="10dp">
 
     <ImageView
         android:id="@+id/productImageFav"
@@ -18,23 +19,37 @@
         android:id="@+id/productNameFav"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="50dp"
         android:text="Modern Sofas"
         android:textColor="#454545"
         android:textSize="16sp"
-        app:layout_constraintStart_toEndOf="@+id/productImageFav"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/productImageFav"/>
 
     <TextView
         android:id="@+id/productPriceFav"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="20dp"
-        android:text="430 $"
+        android:text="430"
         android:textColor="#934C25"
         android:textSize="16sp"
-        app:layout_constraintStart_toEndOf="@+id/productImageFav"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/productNameFav" />
+
+    <TextView
+        android:id="@+id/dollarSign"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="3dp"
+        android:layout_marginBottom="8dp"
+        android:text="$"
+        android:textColor="#934C25"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/productPriceFav" />
 </androidx.constraintlayout.widget.ConstraintLayout>

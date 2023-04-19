@@ -13,6 +13,7 @@
         <entry key="..\:/Users/maiel/AndroidStudioProjects/Furniture_APP/app/src/main/res/drawable/search.xml" value="0.146" />
         <entry key="..\:/Users/maiel/AndroidStudioProjects/Furniture_APP/app/src/main/res/drawable/search_box.xml" value="0.146" />
         <entry key="..\:/Users/maiel/AndroidStudioProjects/Furniture_APP/app/src/main/res/layout-v26/activity_home.xml" value="0.13333333333333333" />
+        <entry key="..\:/Users/maiel/AndroidStudioProjects/Furniture_APP/app/src/main/res/layout-v26/backtoolbar.xml" value="0.1796875" />
         <entry key="..\:/Users/maiel/AndroidStudioProjects/Furniture_APP/app/src/main/res/layout/activity_home.xml" value="0.22" />
         <entry key="..\:/Users/maiel/AndroidStudioProjects/Furniture_APP/app/src/main/res/layout/activity_main.xml" value="0.11231884057971014" />
         <entry key="..\:/Users/maiel/AndroidStudioProjects/Furniture_APP/app/src/main/res/layout/activity_searchable.xml" value="0.1796875" />
@@ -25,9 +26,10 @@
         <entry key="..\:/Users/maiel/AndroidStudioProjects/Furniture_APP/app/src/main/res/layout/fragment_login.xml" value="0.14666666666666667" />
         <entry key="..\:/Users/maiel/AndroidStudioProjects/Furniture_APP/app/src/main/res/layout/fragment_product_details.xml" value="0.22" />
         <entry key="..\:/Users/maiel/AndroidStudioProjects/Furniture_APP/app/src/main/res/layout/fragment_profile.xml" value="0.1526268115942029" />
-        <entry key="..\:/Users/maiel/AndroidStudioProjects/Furniture_APP/app/src/main/res/layout/fragment_shopping.xml" value="0.1526268115942029" />
+        <entry key="..\:/Users/maiel/AndroidStudioProjects/Furniture_APP/app/src/main/res/layout/fragment_shopping.xml" value="0.22" />
         <entry key="..\:/Users/maiel/AndroidStudioProjects/Furniture_APP/app/src/main/res/layout/fragment_signup.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/maiel/AndroidStudioProjects/Furniture_APP/app/src/main/res/layout/fragment_splash.xml" value="0.10960144927536232" />
+        <entry key="..\:/Users/maiel/AndroidStudioProjects/Furniture_APP/app/src/main/res/layout/shopping_data_model.xml" value="0.1796875" />
         <entry key="..\:/Users/maiel/AndroidStudioProjects/Furniture_APP/app/src/main/res/layout/splash_screen_layout.xml" value="0.1796875" />
         <entry key="..\:/Users/maiel/AndroidStudioProjects/Furniture_APP/app/src/main/res/menu/nav_menu.xml" value="0.17552083333333332" />
       </map>

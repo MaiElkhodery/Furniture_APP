@@ -15,7 +15,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.furniture_app.Database.ViewModel;
 import com.example.furniture_app.databinding.FragmentFavoriteBinding;
 
-import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -50,7 +49,7 @@ public class FavoriteFragment extends Fragment{
     public void initRecyclerView(){
         recyclerView = fragmentBinding.favoritesContainer;
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(),2));
-        adapter = new FavoriteListAdapter(new ArrayList<>());
+        adapter = new FavoriteListAdapter();
         recyclerView.setAdapter(adapter);
     }
     public void updateFavList(){

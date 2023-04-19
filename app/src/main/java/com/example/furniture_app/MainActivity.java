@@ -8,7 +8,6 @@ import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
 
-import com.example.furniture_app.Database.SharedViewModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
@@ -18,12 +17,10 @@ public class MainActivity extends AppCompatActivity {
     String FIRST_LOGIN_KEY = "firstLogin";
     String FIRST_TIME_KEY = "firstTime";
     public NavController navController;
-    public static SharedViewModel sharedViewModel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        sharedViewModel = new SharedViewModel(this.getApplication());
         start();
         initNavigation();
     }
