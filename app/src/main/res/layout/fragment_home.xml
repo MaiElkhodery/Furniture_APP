@@ -62,14 +62,14 @@
 
         <TextView
             android:id="@+id/textView"
-            android:layout_width="147dp"
-            android:layout_height="62dp"
+            android:layout_width="158dp"
+            android:layout_height="52dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="12dp"
             android:fontFamily="cursive"
             android:text="Sale Up To 70% Off"
             android:textColor="@color/white"
-            android:textSize="26sp"
+            android:textSize="22sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -78,7 +78,7 @@
             android:layout_height="28dp"
             android:layout_marginStart="12dp"
             android:layout_marginTop="10dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="13dp"
             android:background="@drawable/button_background"
             android:paddingLeft="24dp"
             android:paddingTop="5dp"
@@ -97,7 +97,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="18dp"
+        android:layout_marginTop="13dp"
         android:text="Categories"
         android:textColor="#934C25"
         android:textSize="21sp"
@@ -109,12 +109,13 @@
         android:id="@+id/categories_layout"
         android:layout_width="match_parent"
         android:layout_height="30dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="13dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2">
 
         <LinearLayout
+            android:id="@+id/categories_linear_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">

@@ -16,12 +16,12 @@ import com.example.furniture_app.Database.ViewModel;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Holder> {
+public class CategoricalProductsAdapter extends RecyclerView.Adapter<CategoricalProductsAdapter.Holder> {
 
     ArrayList<Product> products= new ArrayList<>();
     ViewModel viewModel;
     private CategoryAdapterInterface listener;
-    public CategoriesAdapter(CategoryAdapterInterface listener){
+    public CategoricalProductsAdapter(CategoryAdapterInterface listener){
         this.listener=listener;
         viewModel = HomeFragment.viewModel;
     }

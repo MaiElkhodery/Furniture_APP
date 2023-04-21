@@ -70,6 +70,6 @@ public class ShoppingFragment extends Fragment implements CartAdapter.SetOnChang
 
     @Override
     public void goToProductDetails(Product product) {
-        navController.navigate(HomeFragmentDirections.actionHomeFragmentToProductDetailsFragment(product));
+        navController.navigate(ShoppingFragmentDirections.actionShoppingFragmentToProductDetailsFragment(product));
     }
 }

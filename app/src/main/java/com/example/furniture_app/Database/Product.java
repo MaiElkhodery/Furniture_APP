@@ -14,31 +14,35 @@ public class Product implements Serializable {
     String name;
     String description;
     int price;
+    String category;
     boolean inFavorite = false;
     boolean isProductInCart = false;
     int quantity =0;
 
 
     @Ignore
-    public Product(int img, String name, int price, boolean inFavorite) {
+    public Product(int img, String name, int price, boolean inFavorite,String category) {
         this.img = img;
         this.name = name;
         this.price = price;
         this.inFavorite = inFavorite;
+        this.category=category;
     }
 
-    @Ignore
-    public Product(int img, String name, int price) {
+    public Product(int img, String name, int price,String category) {
         this.img = img;
         this.name = name;
         this.price = price;
+        this.category=category;
     }
-    public Product(long id, int img, String name, String description, int price) {
+    @Ignore
+    public Product(long id, int img, String name, String description, int price,String category) {
         this.id = id;
         this.img = img;
         this.name = name;
         this.description = description;
         this.price = price;
+        this.category=category;
     }
 
     public String getDescription() {
@@ -63,6 +67,14 @@ public class Product implements Serializable {
         }else{
             this.quantity=0;
         }
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public void setDescription(String description) {

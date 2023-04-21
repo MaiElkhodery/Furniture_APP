@@ -94,7 +94,7 @@ public class ProductDetailsFragment extends Fragment {
     }
     private void backToHome(){
         detailsBinding.backIcon.setOnClickListener(view -> {
-            navController.navigate(ProductDetailsFragmentDirections.actionProductDetailsFragmentToHomeFragment());
+            navController.popBackStack();
         });
     }
 }

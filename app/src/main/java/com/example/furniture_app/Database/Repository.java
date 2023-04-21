@@ -81,11 +81,23 @@ public class Repository {
     public void updateProduct(Product product){
         new UpdateProductAsyncTask(productDAO).execute(product);
     }
-    public Product getProduct(String name){
-        return productDAO.getProduct(name);
-    }
     public LiveData<List<Product>> getAllProducts(){
         return allProducts;
+    }
+    public LiveData<List<Product>> getChairProducts(){
+        return productDAO.getChairProducts();
+    }
+    public LiveData<List<Product>> getBedProducts(){
+        return productDAO.getBedProducts();
+    }
+    public LiveData<List<Product>> getTableProducts(){
+        return productDAO.getTableProducts();
+    }
+    public LiveData<List<Product>> getSofaProducts(){
+        return productDAO.getSofaProducts();
+    }
+    public LiveData<List<Product>> getLampProducts(){
+        return productDAO.getLampProducts();
     }
     public LiveData<List<Product>> getAllFavProducts(){
         return productDAO.getAllFavProducts();

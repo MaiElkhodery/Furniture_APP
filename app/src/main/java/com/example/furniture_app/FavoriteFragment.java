@@ -8,22 +8,25 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.furniture_app.Database.Product;
 import com.example.furniture_app.Database.ViewModel;
 import com.example.furniture_app.databinding.FragmentFavoriteBinding;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class FavoriteFragment extends Fragment{
+public class FavoriteFragment extends Fragment implements FavoriteListAdapter.SetOnClickProductListener{
 
     FragmentFavoriteBinding fragmentBinding;
     ViewModel viewModel;
     FavoriteListAdapter adapter;
     RecyclerView recyclerView;
+    NavController navController;
     private ExecutorService executorService = Executors.newSingleThreadExecutor();
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -40,16 +43,18 @@ public class FavoriteFragment extends Fragment{
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        navController= Navigation.findNavController(view);
         viewModel=new ViewModel(getActivity().getApplication());
         initRecyclerView();
-        deleteFavProduct();
         updateFavList();
     }
+
+
 
     public void initRecyclerView(){
         recyclerView = fragmentBinding.favoritesContainer;
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(),2));
-        adapter = new FavoriteListAdapter();
+        adapter = new FavoriteListAdapter(this);
         recyclerView.setAdapter(adapter);
     }
     public void updateFavList(){
@@ -57,18 +62,9 @@ public class FavoriteFragment extends Fragment{
             adapter.setFavProductsList(products);
         });
     }
-    public void deleteFavProduct(){
-        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.RIGHT) {
-            @Override
-            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
-                return false;
-            }
-
-            @Override
-            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-//                executorService.execute(() ->
-//                        viewModel.deleteProduct(adapter.getProduct(viewHolder.getAdapterPosition())));
-            }
-        }).attachToRecyclerView(recyclerView);
+    @Override
+    public void onClick(Product product) {
+        navController.navigate(FavoriteFragmentDirections.actionFavoriteFragmentToProductDetailsFragment(product));
     }
+
 }

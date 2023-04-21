@@ -17,7 +17,9 @@ import java.util.List;
 public class FavoriteListAdapter extends RecyclerView.Adapter<FavoriteListAdapter.Holder>{
 
     ArrayList<Product> favorite_list= new ArrayList<>();
-    public FavoriteListAdapter(){
+    SetOnClickProductListener listener;
+    public FavoriteListAdapter(SetOnClickProductListener listener){
+        this.listener=listener;
     }
     @NonNull
     @Override
@@ -32,6 +34,10 @@ public class FavoriteListAdapter extends RecyclerView.Adapter<FavoriteListAdapte
         holder.productImage.setImageResource(favProduct.getImg());
         holder.productName.setText(String.valueOf(favProduct.getName()));
         holder.productPrice.setText(String.valueOf(favProduct.getPrice()));
+
+        holder.itemView.setOnClickListener(view -> {
+            listener.onClick(favProduct);
+        });
     }
 
     public void setFavProductsList(List<Product> products){
@@ -60,5 +66,9 @@ public class FavoriteListAdapter extends RecyclerView.Adapter<FavoriteListAdapte
 
     public Product getProduct(int position){
         return favorite_list.get(position);
+    }
+
+    public interface SetOnClickProductListener{
+        void onClick(Product product);
     }
 }

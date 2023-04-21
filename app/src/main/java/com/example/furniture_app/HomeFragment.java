@@ -1,6 +1,7 @@
 package com.example.furniture_app;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,11 +18,11 @@ import com.example.furniture_app.Database.Product;
 import com.example.furniture_app.Database.ViewModel;
 import com.example.furniture_app.databinding.FragmentHomeBinding;
 
-public class HomeFragment extends Fragment implements CategoriesAdapter.CategoryAdapterInterface {
+public class HomeFragment extends Fragment implements CategoricalProductsAdapter.CategoryAdapterInterface {
 
     FragmentHomeBinding homeBinding;
     public static ViewModel viewModel;
-    CategoriesAdapter adapter;
+    CategoricalProductsAdapter adapter;
     NavController navController;
 
     @Override
@@ -42,11 +43,17 @@ public class HomeFragment extends Fragment implements CategoriesAdapter.Category
         super.onViewCreated(view, savedInstanceState);
         navController= Navigation.findNavController(view);
         initRecyclerView();
+        onClickChair();
+        onClickBed();
+        onClickLamp();
+        onClickSofa();
+        onClickTable();
+        onClickAll();
     }
 
     public void initRecyclerView(){
         RecyclerView recyclerView = homeBinding.categoriesContainer;
-        adapter = new CategoriesAdapter(this);
+        adapter = new CategoricalProductsAdapter(this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
         viewModel.getAllProducts().observe(getViewLifecycleOwner(), products -> {
@@ -57,6 +64,90 @@ public class HomeFragment extends Fragment implements CategoriesAdapter.Category
     @Override
     public void onClick(Product product) {
         navController.navigate(HomeFragmentDirections.actionHomeFragmentToProductDetailsFragment(product));
+    }
+
+    private void onClickChair(){
+        homeBinding.chairTextView.setOnClickListener(view -> {
+            homeBinding.chairTextView.setTextColor(getResources().getColor(R.color.brown_categories));
+            homeBinding.tableTextView.setTextColor(getResources().getColor(R.color.black));
+            homeBinding.lampTextView.setTextColor(getResources().getColor(R.color.black));
+            homeBinding.bedTextView.setTextColor(getResources().getColor(R.color.black));
+            homeBinding.sofaTextView.setTextColor(getResources().getColor(R.color.black));
+            homeBinding.allTextView.setTextColor(getResources().getColor(R.color.black));
+            viewModel.getChairProducts().observe(getViewLifecycleOwner(),products -> {
+                adapter.setProducts(products);
+                Log.d("chair",products.size()+"");
+            });
+        });
+    }
+    private void onClickTable(){
+        homeBinding.tableTextView.setOnClickListener(view -> {
+            homeBinding.tableTextView.setTextColor(getResources().getColor(R.color.brown_categories));
+            homeBinding.chairTextView.setTextColor(getResources().getColor(R.color.black));
+            homeBinding.lampTextView.setTextColor(getResources().getColor(R.color.black));
+            homeBinding.bedTextView.setTextColor(getResources().getColor(R.color.black));
+            homeBinding.sofaTextView.setTextColor(getResources().getColor(R.color.black));
+            homeBinding.allTextView.setTextColor(getResources().getColor(R.color.black));
+            viewModel.getTableProducts().observe(getViewLifecycleOwner(),products -> {
+                adapter.setProducts(products);
+                Log.d("table",products.size()+"");
+            });
+        });
+    }
+    private void onClickBed(){
+        homeBinding.bedTextView.setOnClickListener(view -> {
+            homeBinding.bedTextView.setTextColor(getResources().getColor(R.color.brown_categories));
+            homeBinding.tableTextView.setTextColor(getResources().getColor(R.color.black));
+            homeBinding.lampTextView.setTextColor(getResources().getColor(R.color.black));
+            homeBinding.chairTextView.setTextColor(getResources().getColor(R.color.black));
+            homeBinding.sofaTextView.setTextColor(getResources().getColor(R.color.black));
+            homeBinding.allTextView.setTextColor(getResources().getColor(R.color.black));
+            viewModel.getBedProducts().observe(getViewLifecycleOwner(),products -> {
+                adapter.setProducts(products);
+                Log.d("bed",products.size()+"");
+            });
+        });
+    }
+    private void onClickLamp(){
+        homeBinding.lampTextView.setOnClickListener(view -> {
+            homeBinding.lampTextView.setTextColor(getResources().getColor(R.color.brown_categories));
+            homeBinding.tableTextView.setTextColor(getResources().getColor(R.color.black));
+            homeBinding.chairTextView.setTextColor(getResources().getColor(R.color.black));
+            homeBinding.bedTextView.setTextColor(getResources().getColor(R.color.black));
+            homeBinding.sofaTextView.setTextColor(getResources().getColor(R.color.black));
+            homeBinding.allTextView.setTextColor(getResources().getColor(R.color.black));
+            viewModel.getLampProducts().observe(getViewLifecycleOwner(),products -> {
+                adapter.setProducts(products);
+                Log.d("lamp",products.size()+"");
+            });
+        });
+    }
+    private void onClickSofa(){
+        homeBinding.sofaTextView.setOnClickListener(view -> {
+            homeBinding.sofaTextView.setTextColor(getResources().getColor(R.color.brown_categories));
+            homeBinding.tableTextView.setTextColor(getResources().getColor(R.color.black));
+            homeBinding.lampTextView.setTextColor(getResources().getColor(R.color.black));
+            homeBinding.bedTextView.setTextColor(getResources().getColor(R.color.black));
+            homeBinding.allTextView.setTextColor(getResources().getColor(R.color.black));
+            homeBinding.chairTextView.setTextColor(getResources().getColor(R.color.black));
+            viewModel.getSofaProducts().observe(getViewLifecycleOwner(),products -> {
+                adapter.setProducts(products);
+                Log.d("sofa",products.size()+"");
+            });
+        });
+    }
+    private void onClickAll(){
+        homeBinding.allTextView.setOnClickListener(view -> {
+            homeBinding.allTextView.setTextColor(getResources().getColor(R.color.brown_categories));
+            homeBinding.tableTextView.setTextColor(getResources().getColor(R.color.black));
+            homeBinding.lampTextView.setTextColor(getResources().getColor(R.color.black));
+            homeBinding.bedTextView.setTextColor(getResources().getColor(R.color.black));
+            homeBinding.sofaTextView.setTextColor(getResources().getColor(R.color.black));
+            homeBinding.chairTextView.setTextColor(getResources().getColor(R.color.black));
+            viewModel.getAllProducts().observe(getViewLifecycleOwner(),products -> {
+                adapter.setProducts(products);
+            });
+        });
     }
 
 }

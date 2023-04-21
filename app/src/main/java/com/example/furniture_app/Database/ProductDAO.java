@@ -26,4 +26,14 @@ public interface ProductDAO {
     LiveData<List<Product>> getAllFavProducts();
     @Query("SELECT * FROM Product WHERE isProductInCart=1")
     LiveData<List<Product>> getProductsInShoppingCart();
+    @Query("SELECT * FROM Product WHERE category= 'chair'")
+    LiveData<List<Product>> getChairProducts();
+    @Query("SELECT * FROM Product WHERE category= 'table'")
+    LiveData<List<Product>> getTableProducts();
+    @Query("SELECT * FROM Product WHERE category= 'bed'")
+    LiveData<List<Product>> getBedProducts();
+    @Query("SELECT * FROM Product WHERE category= 'lamp'")
+    LiveData<List<Product>> getLampProducts();
+    @Query("SELECT * FROM Product WHERE category= 'sofa'")
+    LiveData<List<Product>> getSofaProducts();
 }
