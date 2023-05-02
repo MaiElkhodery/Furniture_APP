@@ -44,23 +44,28 @@ public class ShoppingFragment extends Fragment implements CartAdapter.SetOnChang
         navController= Navigation.findNavController(view);
         initRecyclerView();
         updateCartList();
+        confirmOrder();
     }
-    public void initRecyclerView(){
+
+    private void initRecyclerView(){
         recyclerView = binding.cartContainer ;
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter = new CartAdapter(this);
         recyclerView.setAdapter(adapter);
     }
-    public void updateCartList(){
-        viewModel.getProductsInCart().observe(getViewLifecycleOwner(),products -> {
-            adapter.setCartList(products);
-        });
+    private void updateCartList(){
+        viewModel.getProductsInCart().observe(getViewLifecycleOwner(),products -> adapter.setCartList(products));
     }
 
     @Override
     public void delete(Product product) {
         product.setIsProductInCart(false);
         viewModel.updateProduct(product);
+    }
+    private void confirmOrder() {
+        binding.checkoutOrderButton.setOnClickListener(view -> {
+
+        });
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.example.furniture_app;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Patterns;
@@ -11,6 +12,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
 import com.example.furniture_app.Database.User;
@@ -23,10 +25,10 @@ public class SignupFragment extends Fragment {
     String password;
     FragmentSignupBinding signupBinding;
     ViewModel viewModel;
-    public static SignupFragment newInstance() {
-        return new SignupFragment();
-    }
-
+    SharedPreferences sharedPreference;
+    private final String sharedPrefName="register first time";
+    private final String firstTimeToOpen="open first time";
+    NavController navController;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +45,8 @@ public class SignupFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        sharedPreference=getActivity().getSharedPreferences(sharedPrefName,0);
+        navController=Navigation.findNavController(view);
         signupBinding.signupButton.setOnClickListener(view1 -> {
             username=signupBinding.usernameEditText.getText().toString();
             email=signupBinding.emailEditText.getText().toString();
@@ -50,13 +54,14 @@ public class SignupFragment extends Fragment {
             if (isValidEmail(email) && isValidPassword(password)) {
                 User user = new User(email, username, password );
                 viewModel.insertUser(user);
-                //startActivity( new Intent(getActivity(),HomeActivity.class));
+                sharedPreference.edit().putBoolean(firstTimeToOpen,false).apply();
+                navController.popBackStack();
             } else {
                 Toast.makeText(getContext(), "Invalid email or password", Toast.LENGTH_SHORT).show();
             }
         });
         signupBinding.loginTextView.setOnClickListener(view12 -> {
-            Navigation.findNavController(view).navigate(R.id.action_signupFragment_to_loginFragment);
+            navController.navigate(R.id.action_signupFragment_to_loginFragment);
         });
     }
     private boolean isValidEmail(String email) {

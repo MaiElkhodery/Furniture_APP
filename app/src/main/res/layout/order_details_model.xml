@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:elevation="10dp"
+    android:layout_marginTop="24dp"
+    android:layout_marginStart="24dp"
+    android:layout_marginEnd="24dp">
+
+    <ImageView
+        android:id="@+id/productImageOrder"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:src="@drawable/yellow_sofa"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/productNameOrder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="8dp"
+        android:text="Modern Sofas"
+        android:textColor="#454545"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/productImageOrder"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/productQuantityTxtOrder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/orderQuantityTxt"
+        android:textColor="#454545"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/productImageOrder"
+        app:layout_constraintTop_toBottomOf="@+id/productNameOrder" />
+
+    <TextView
+        android:id="@+id/productQuantityValueOrder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="10dp"
+        android:text="2"
+        android:textColor="#454545"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/productQuantityTxtOrder"
+        app:layout_constraintTop_toBottomOf="@+id/productNameOrder" />
+
+    <TextView
+        android:id="@+id/productPriceOrder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:text="430"
+        android:textColor="#454545"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/productImageOrder"
+        app:layout_constraintTop_toBottomOf="@+id/productQuantityTxtOrder" />
+
+    <TextView
+        android:id="@+id/dollarSign"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="10dp"
+        android:text="$"
+        android:textColor="#454545"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/productPriceOrder"
+        app:layout_constraintTop_toBottomOf="@+id/productQuantityTxtOrder" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

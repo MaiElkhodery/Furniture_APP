@@ -1,13 +1,16 @@
 package com.example.furniture_app;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
 import com.example.furniture_app.Database.User;
@@ -19,10 +22,11 @@ public class LoginFragment extends Fragment {
     String password;
     ViewModel viewModel;
     FragmentLoginBinding loginBinding;
-    public static LoginFragment newInstance() {
-        return new LoginFragment();
-    }
-
+    NavController navController;
+    SharedPreferences sharedPreference;
+    private final String sharedPrefName="register first time";
+    private final String firstTimeToOpen="open first time";
+    private boolean isFirstTimeToOpen;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,19 +43,23 @@ public class LoginFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        navController=Navigation.findNavController(view);
+        sharedPreference=getActivity().getSharedPreferences(sharedPrefName,0);
+
         loginBinding.loginButton.setOnClickListener(view1 -> {
             email=loginBinding.emailEditText.getText().toString();
             password= loginBinding.passwordEditText.getText().toString();
             User user = viewModel.getUser(email);
-            //startActivity( new Intent(getActivity(),HomeActivity.class));
-//            if (user!=null && user.getPassword().equals(password)){
-//                startActivity( new Intent(getActivity(),HomeActivity.class));
-//            }else {
-//                Toast.makeText(getContext(), "Invalid email or password", Toast.LENGTH_SHORT).show();
-//            }
+            if (user!=null && user.getPassword().equals(password)){
+                sharedPreference.edit().putBoolean(firstTimeToOpen,false).apply();
+                navController.popBackStack();
+            }else {
+                Toast.makeText(getContext(), "Invalid email or password", Toast.LENGTH_SHORT).show();
+            }
         });
+
         loginBinding.signupTextView.setOnClickListener(view1 -> {
-            Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_signupFragment);
+            navController.navigate(R.id.action_loginFragment_to_signupFragment);
         });
     }
 
