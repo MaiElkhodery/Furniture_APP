@@ -64,7 +64,7 @@ public class ShoppingFragment extends Fragment implements CartAdapter.SetOnChang
     }
     private void confirmOrder() {
         binding.checkoutOrderButton.setOnClickListener(view -> {
-
+            navController.navigate(ShoppingFragmentDirections.actionShoppingFragmentToCheckoutFragment());
         });
     }
 

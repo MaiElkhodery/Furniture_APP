@@ -42,6 +42,7 @@ public class HomeFragment extends Fragment implements CategoricalProductsAdapter
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         navController= Navigation.findNavController(view);
+
         initRecyclerView();
         onClickChair();
         onClickBed();
@@ -49,8 +50,13 @@ public class HomeFragment extends Fragment implements CategoricalProductsAdapter
         onClickSofa();
         onClickTable();
         onClickAll();
+        search();
     }
-
+    private void search(){
+        homeBinding.searchButton.setOnClickListener(view -> {
+            navController.navigate(HomeFragmentDirections.actionHomeFragmentToSearchFragment(homeBinding.searchEditText.getText().toString()));
+        });
+    }
     public void initRecyclerView(){
         RecyclerView recyclerView = homeBinding.categoriesContainer;
         adapter = new CategoricalProductsAdapter(this);
@@ -74,7 +80,7 @@ public class HomeFragment extends Fragment implements CategoricalProductsAdapter
             homeBinding.bedTextView.setTextColor(getResources().getColor(R.color.black));
             homeBinding.sofaTextView.setTextColor(getResources().getColor(R.color.black));
             homeBinding.allTextView.setTextColor(getResources().getColor(R.color.black));
-            viewModel.getChairProducts().observe(getViewLifecycleOwner(),products -> {
+            viewModel.getProductOfType(FurnitureCategory.CHAIR.getName()).observe(getViewLifecycleOwner(),products -> {
                 adapter.setProducts(products);
                 Log.d("chair",products.size()+"");
             });
@@ -88,7 +94,7 @@ public class HomeFragment extends Fragment implements CategoricalProductsAdapter
             homeBinding.bedTextView.setTextColor(getResources().getColor(R.color.black));
             homeBinding.sofaTextView.setTextColor(getResources().getColor(R.color.black));
             homeBinding.allTextView.setTextColor(getResources().getColor(R.color.black));
-            viewModel.getTableProducts().observe(getViewLifecycleOwner(),products -> {
+            viewModel.getProductOfType(FurnitureCategory.TABLE.getName()).observe(getViewLifecycleOwner(),products -> {
                 adapter.setProducts(products);
                 Log.d("table",products.size()+"");
             });
@@ -102,7 +108,7 @@ public class HomeFragment extends Fragment implements CategoricalProductsAdapter
             homeBinding.chairTextView.setTextColor(getResources().getColor(R.color.black));
             homeBinding.sofaTextView.setTextColor(getResources().getColor(R.color.black));
             homeBinding.allTextView.setTextColor(getResources().getColor(R.color.black));
-            viewModel.getBedProducts().observe(getViewLifecycleOwner(),products -> {
+            viewModel.getProductOfType(FurnitureCategory.BED.getName()).observe(getViewLifecycleOwner(),products -> {
                 adapter.setProducts(products);
                 Log.d("bed",products.size()+"");
             });
@@ -116,7 +122,7 @@ public class HomeFragment extends Fragment implements CategoricalProductsAdapter
             homeBinding.bedTextView.setTextColor(getResources().getColor(R.color.black));
             homeBinding.sofaTextView.setTextColor(getResources().getColor(R.color.black));
             homeBinding.allTextView.setTextColor(getResources().getColor(R.color.black));
-            viewModel.getLampProducts().observe(getViewLifecycleOwner(),products -> {
+            viewModel.getProductOfType(FurnitureCategory.LAMP.getName()).observe(getViewLifecycleOwner(),products -> {
                 adapter.setProducts(products);
                 Log.d("lamp",products.size()+"");
             });
@@ -130,7 +136,7 @@ public class HomeFragment extends Fragment implements CategoricalProductsAdapter
             homeBinding.bedTextView.setTextColor(getResources().getColor(R.color.black));
             homeBinding.allTextView.setTextColor(getResources().getColor(R.color.black));
             homeBinding.chairTextView.setTextColor(getResources().getColor(R.color.black));
-            viewModel.getSofaProducts().observe(getViewLifecycleOwner(),products -> {
+            viewModel.getProductOfType(FurnitureCategory.SOFA.getName()).observe(getViewLifecycleOwner(),products -> {
                 adapter.setProducts(products);
                 Log.d("sofa",products.size()+"");
             });

@@ -45,22 +45,12 @@ public class ViewModel extends AndroidViewModel {
         return allProducts;
     }
 
-    public LiveData<List<Product>> getChairProducts(){
-        return repository.getChairProducts();
+    public LiveData<List<Product>> getProductOfType(String category){
+        return repository.getProductOfType(category);
     }
-    public LiveData<List<Product>> getTableProducts(){
-        return repository.getTableProducts();
+    public LiveData<List<Product>> getProduct(String name){
+        return repository.getProduct(name);
     }
-    public LiveData<List<Product>> getBedProducts(){
-        return repository.getBedProducts();
-    }
-    public LiveData<List<Product>> getLampProducts(){
-        return repository.getLampProducts();
-    }
-    public LiveData<List<Product>> getSofaProducts(){
-        return repository.getSofaProducts();
-    }
-
     public LiveData<List<Product>> getAllFavProducts(){
         return repository.getAllFavProducts();
     }

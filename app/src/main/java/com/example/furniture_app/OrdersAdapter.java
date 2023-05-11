@@ -37,17 +37,16 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.Holder> {
     }
 
     static class Holder extends RecyclerView.ViewHolder{
-
         ImageView productImage;
         TextView productQuantity;
         TextView productName;
         TextView productPrice;
         public Holder(@NonNull View itemView) {
             super(itemView);
-            productImage = itemView.findViewById(R.id.productImageShopping);
-            productName=itemView.findViewById(R.id.productNameShopping);
-            productPrice=itemView.findViewById(R.id.productPriceShopping);
-            productQuantity=itemView.findViewById(R.id.quantityShopping);
+            productImage = itemView.findViewById(R.id.productImageOrder);
+            productName=itemView.findViewById(R.id.productNameOrder);
+            productPrice=itemView.findViewById(R.id.productPriceOrder);
+            productQuantity=itemView.findViewById(R.id.productQuantityValueOrder);
         }
     }
     public void setOrdersList(List<Product> products){

@@ -35,7 +35,7 @@ public class CheckoutFragment extends Fragment {
     TextView orderTotal;
     CheckBox checkBox;
     AppCompatButton confirmButton;
-    ArrayList<Product> products;
+    ArrayList<Product> productsList = new ArrayList<>();
     int price=0,delivery=30,total=0;
 
     @Override
@@ -46,7 +46,8 @@ public class CheckoutFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_checkout, container, false);
+        binding=FragmentCheckoutBinding.inflate(inflater,container,false);
+        return binding.getRoot();
     }
 
     @Override
@@ -60,8 +61,8 @@ public class CheckoutFragment extends Fragment {
         checkBox=binding.checkPaymentMethod;
         confirmButton=binding.confirmOrderButton;
         initRecyclerView();
-        updateCartList();
-        setTotalPrice();
+        updateOrdersList();
+        onClickConfirm();
     }
     private void initRecyclerView(){
         recyclerView = binding.checkoutRecyclerView ;
@@ -69,15 +70,16 @@ public class CheckoutFragment extends Fragment {
         adapter = new OrdersAdapter();
         recyclerView.setAdapter(adapter);
     }
-    private void updateCartList(){
+    private void updateOrdersList(){
         viewModel.getProductsInCart().observe(getViewLifecycleOwner(),products -> {
             adapter.setOrdersList(products);
-            this.products.addAll(products);
+            productsList.addAll(products);
+            setTotalPrice();
         });
     }
     private void setTotalPrice(){
-        for (int i=0;i<products.size();i++){
-            price+=products.get(i).getPrice();
+        for (int i=0;i<productsList.size();i++){
+            price+=productsList.get(i).getPrice();
         }
         total=delivery+price;
         orderPrice.setText(String.valueOf(price));

@@ -36,8 +36,7 @@ public class Product implements Serializable {
         this.category=category;
     }
     @Ignore
-    public Product(long id, int img, String name, String description, int price,String category) {
-        this.id = id;
+    public Product( int img, String name, String description, int price,String category) {
         this.img = img;
         this.name = name;
         this.description = description;

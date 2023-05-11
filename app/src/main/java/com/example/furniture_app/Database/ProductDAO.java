@@ -20,20 +20,13 @@ public interface ProductDAO {
     void update(Product product);
     @Query("SELECT * FROM product")
     LiveData<List<Product>> getAllProducts();
-    @Query("SELECT * FROM Product WHERE name=:name")
-    Product getProduct(String name);
+    @Query("SELECT * FROM Product WHERE name LIKE :productName")
+    LiveData<List<Product>> getProduct(String productName);
     @Query("SELECT * FROM Product WHERE inFavorite=1")
     LiveData<List<Product>> getAllFavProducts();
     @Query("SELECT * FROM Product WHERE isProductInCart=1")
     LiveData<List<Product>> getProductsInShoppingCart();
-    @Query("SELECT * FROM Product WHERE category= 'chair'")
-    LiveData<List<Product>> getChairProducts();
-    @Query("SELECT * FROM Product WHERE category= 'table'")
-    LiveData<List<Product>> getTableProducts();
-    @Query("SELECT * FROM Product WHERE category= 'bed'")
-    LiveData<List<Product>> getBedProducts();
-    @Query("SELECT * FROM Product WHERE category= 'lamp'")
-    LiveData<List<Product>> getLampProducts();
-    @Query("SELECT * FROM Product WHERE category= 'sofa'")
-    LiveData<List<Product>> getSofaProducts();
+    @Query("SELECT * FROM Product WHERE category= :category")
+    LiveData<List<Product>> getProductOfType(String category);
+
 }
