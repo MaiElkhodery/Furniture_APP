@@ -56,6 +56,7 @@ public class SignupFragment extends Fragment {
                 viewModel.insertUser(user);
                 sharedPreference.edit().putBoolean(firstTimeToOpen,false).apply();
                 navController.popBackStack();
+                navController.popBackStack();
             } else {
                 Toast.makeText(getContext(), "Invalid email or password", Toast.LENGTH_SHORT).show();
             }

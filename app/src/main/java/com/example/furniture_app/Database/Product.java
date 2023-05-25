@@ -9,15 +9,16 @@ import java.io.Serializable;
 @Entity
 public class Product implements Serializable {
     @PrimaryKey(autoGenerate = true)
-    long id;
-    int img;
-    String name;
-    String description;
-    int price;
-    String category;
-    boolean inFavorite = false;
-    boolean isProductInCart = false;
-    int quantity =0;
+    private long id;
+//    private long orderId;
+    private int img;
+    private String name;
+    private String description;
+    private int price;
+    private String category;
+    private boolean inFavorite = false;
+    private boolean isProductInCart = false;
+    private int quantity =0;
 
 
     @Ignore
