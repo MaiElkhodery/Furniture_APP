@@ -54,6 +54,7 @@ public class HomeFragment extends Fragment implements CategoricalProductsAdapter
     }
     private void search(){
         homeBinding.searchButton.setOnClickListener(view -> {
+            Log.d("searchKey", homeBinding.searchEditText.getText().toString());
             navController.navigate(HomeFragmentDirections.actionHomeFragmentToSearchFragment(homeBinding.searchEditText.getText().toString()));
         });
     }

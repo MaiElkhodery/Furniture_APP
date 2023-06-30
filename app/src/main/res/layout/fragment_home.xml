@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="50dp"
         android:background="@drawable/search_box"
         android:orientation="horizontal"
@@ -96,10 +96,10 @@
     <ImageView
         android:id="@+id/appImg"
         android:layout_width="match_parent"
-        android:layout_height="185dp"
-        android:layout_marginStart="50dp"
+        android:layout_height="170dp"
+        android:layout_marginStart="70dp"
         android:layout_marginTop="5dp"
-        android:layout_marginEnd="50dp"
+        android:layout_marginEnd="70dp"
         android:scaleType="fitXY"
         android:src="@drawable/furniture_photo"
         app:layout_constraintEnd_toEndOf="parent"
@@ -126,7 +126,8 @@
         android:layout_marginTop="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2">
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        android:scrollbars="none">
 
         <LinearLayout
             android:id="@+id/categories_linear_layout"

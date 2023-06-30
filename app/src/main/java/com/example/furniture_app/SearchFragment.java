@@ -1,7 +1,6 @@
 package com.example.furniture_app;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,16 +50,13 @@ public class SearchFragment extends Fragment implements FavoriteListAdapter.SetO
         viewModel=new ViewModel(getActivity().getApplication());
         viewModel.getProduct(getArguments().getString(key)).observe(getViewLifecycleOwner(),products ->{
             resultOfSearch.addAll(products);
-            Log.d("SearchResultList", products.size()+"");
-            Log.d("Value", getArguments().getString(key));
+            if(resultOfSearch.size()!=0){
+                initRecyclerView();
+                updateSearchList();
+            }else{
+                Toast.makeText(getContext(), "NotFound!", Toast.LENGTH_SHORT).show();
+            }
         });
-
-        if(resultOfSearch.size()!=0){
-            initRecyclerView();
-            updateSearchList();
-        }else{
-            Toast.makeText(getContext(), "NotFound!", Toast.LENGTH_SHORT).show();
-        }
         onClickBack();
     }
 

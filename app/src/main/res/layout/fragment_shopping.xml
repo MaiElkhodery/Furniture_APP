@@ -6,12 +6,33 @@
     android:layout_height="match_parent"
     tools:context=".ShoppingFragment">
 
+    <LinearLayout
+        android:id="@+id/shopping_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:gravity="center">
+        <TextView
+            android:id="@+id/favoriteTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Shopping Cart"
+            android:textSize="24sp"
+            android:textColor="#454545"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"/>
+    </LinearLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/cartContainer"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/checkoutOrderButton"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/shopping_toolbar"
         tools:layout_editor_absoluteX="0dp"
         tools:listitem="@layout/shopping_data_model" />
 
