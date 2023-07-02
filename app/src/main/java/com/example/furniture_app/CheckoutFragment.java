@@ -63,6 +63,7 @@ public class CheckoutFragment extends Fragment {
         initRecyclerView();
         updateOrdersList();
         onClickConfirm();
+        onClickBack();
     }
     private void initRecyclerView(){
         recyclerView = binding.checkoutRecyclerView ;
@@ -93,6 +94,11 @@ public class CheckoutFragment extends Fragment {
             }else{
                 Toast.makeText(getContext(), "Check Payment Method", Toast.LENGTH_SHORT).show();
             }
+        });
+    }
+    private void onClickBack(){
+        binding.backIcon.setOnClickListener(view -> {
+            navController.navigate(CheckoutFragmentDirections.actionCheckoutFragmentToShoppingFragment());
         });
     }
 }

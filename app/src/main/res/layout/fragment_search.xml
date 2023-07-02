@@ -19,12 +19,21 @@
             android:id="@+id/backIconInSearch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
             android:layout_marginStart="16dp"
             android:layout_marginTop="15dp"
             android:layout_marginBottom="15dp"
             android:background="@android:color/transparent"
             android:src="@drawable/arrow_back" />
+        <TextView
+            android:id="@+id/favoriteTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Search "
+            android:textSize="24sp"
+            android:textColor="#454545"
+            android:layout_marginStart="100dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"/>
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView

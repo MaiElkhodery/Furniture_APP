@@ -11,7 +11,7 @@
         android:theme="@style/Theme.Material3.Light.NoActionBar" >
         <activity
             android:name=".SplashActivity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,7 +20,8 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:exported="false" >
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan">
 
         </activity>
     </application>
