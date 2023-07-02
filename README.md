@@ -14,3 +14,8 @@
 
 ##### - browsing and search for various furniture products
 [search](https://github.com/MaiElkhodery/Furniture_APP/assets/105084125/c01310b0-83bd-4cef-b861-a35d6aceff3c)
+
+##### - signuo & login
+![signup](https://github.com/MaiElkhodery/Furniture_APP/assets/105084125/d74e04d1-d250-4591-9675-e5c12c47ecff)
+
+![login](https://github.com/MaiElkhodery/Furniture_APP/assets/105084125/7e8c89a6-cdbb-4e5a-8d21-3d8426bda390)
